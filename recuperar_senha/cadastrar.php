@@ -9,7 +9,7 @@ $senha = $_POST['senha'];
 $sql = "INSERT INTO usuario (nome, email, senha) VALUES ('$nome','$email','$senha')";
 $resultado = mysqli_query($conexao, $sql);
 
-$consulta = $cn -> query("SELECT email FROM usuario WHERE email = '$email'");
+$consulta = $conexao -> query("SELECT email FROM usuario WHERE email = '$email'");
 $exibe = $consulta ->fetch(PDO::FETCH_ASSOC);
 if($consulta -> rowCount() == 1) {
     echo "email já cadastrado";
