@@ -14,8 +14,8 @@
             <label> Senha: <input type="password" name="senha"> </label> <br>
             <input type="submit" value="Logar"> <br>
     </form> <br> <br>
-    <a href="form-cadastro.php"> Cadastrar-se </a> <br> <br>
-    <a href="form-recuperar-senha.php"> Recuperar senha </a> <br>
+    <a href="./recuperar_senha/form-cadastro.php"> Cadastrar-se </a> <br> <br>
+    <a href="./recuperar_senha/form-recuperar-senha.php"> Recuperar senha </a> <br>
 </body>
 
 </html>
