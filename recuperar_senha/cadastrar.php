@@ -18,4 +18,4 @@ if ($resultado === false) {
         mysqli_errno($conexao) . ": " . mysqli_error($conexao);
 }
 }
-header("Location: ./index.php");
+header("Location: ../index.php");
