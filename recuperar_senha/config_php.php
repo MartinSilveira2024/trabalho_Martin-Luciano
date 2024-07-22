@@ -2,7 +2,7 @@
 
 $config = [
     'host' => '',
-    'user' => '',
+    'user' => 'root',
     'pass' => '',
     'db' => 'trab_martin_luciano',
     'email' => '',
