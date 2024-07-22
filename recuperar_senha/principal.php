@@ -33,7 +33,7 @@ if ($resultado != false) {
                         $arq = $users['foto'];
                         echo "<tr>"; //iniciar a linha
                         echo "<a href='../upload/index.php'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
-                        echo "<td><img src='./uploads/$arq' width='100px' height='100px'></td>"; // exibe imagem
+                        echo "<td><img src='./uploads/$arq' width='100px' height='100px'></td>"; // exibe imagem 
                         echo "<td>" . $user = $users['nome']; "</td>"; //1a coluna com o nome do arquivo
                         echo "<tr>";
                     }
