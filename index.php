@@ -9,7 +9,7 @@
 
 <body>
     <h1> Bem vindo ao visualizador de perfil </h2>
-    <form action="login.php" method="post">
+    <form action="./recuperar_senha/login.php" method="post">
         <label> Email: <input type="email" name="email"> <br></lable>
             <label> Senha: <input type="password" name="senha"> </label> <br>
             <input type="submit" value="Logar"> <br>
