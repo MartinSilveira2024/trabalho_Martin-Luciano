@@ -4,7 +4,7 @@ $config = [
     'host' => '',
     'user' => '',
     'pass' => '',
-    'db' => '',
+    'db' => 'trab_martin_luciano',
     'email' => '',
     'senha_email' => '',
 ];
