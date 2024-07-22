@@ -1,6 +1,6 @@
 <?php
-$conexao = mysqli_connect("localhost", "root", "", "upload_Arquivos");
-$sql = "SELECT * FROM arquivo";
+$conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
+$sql = "SELECT * FROM usuario";
 $resultado = mysqli_query($conexao, $sql);
 if ($resultado != false) {
     $arquivos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
@@ -37,7 +37,7 @@ if ($resultado != false) {
         <tbody>
             <img <?php
                     foreach ($arquivos as $arquivo) {
-                        $arq = $arquivo['Nome_arquivo'];
+                        $arq = $arquivo['foto'];
                         echo "<tr>"; //iniciar a linha
                         echo "<td><img src='uploads/$arq' width='100px' height='100px'></td>"; //
                         echo "<td> <a href='uploads/$arq'>$arq </a></td>"; //1a coluna com o nome do arquivo

@@ -3,7 +3,7 @@ $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
 $sql = "SELECT * FROM usuario";
 $resultado = mysqli_query($conexao, $sql);
 if ($resultado != false) {
-    $arquivos = mysqli_fetch_all($resultado, MYSQLI_BOTH);
+    $user = mysqli_fetch_all($resultado, MYSQLI_BOTH);
 } else {
     echo "Erro ao executar comando SQL.";
     die();
@@ -28,14 +28,14 @@ if ($resultado != false) {
             </tr>
         </thead>
         <tbody>
-        <?php
-                    foreach ($arquivos as $arquivo) {
-                        $arq = $arquivo['nome'];
+            <?php
+                    foreach ($user as $users) {
+                        $arq = $users['foto'];
                         echo "<tr>"; //iniciar a linha
-                        echo "<td>" . $arq = $arquivo['nome']; "</td>";
-
-
-                        //echo "<td><button onclick='excluir(\"" . $arquivo['Nome_arquivo'] . "\");'>Excluir</button></td></tr>";
+                        echo "<a href='../upload/index.php'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
+                        echo "<td><img src='./uploads/$arq' width='100px' height='100px'></td>"; // exibe imagem
+                        echo "<td>" . $user = $users['nome']; "</td>"; //1a coluna com o nome do arquivo
+                        echo "<tr>";
                     }
                     ?> </tbody>
     </table>
@@ -49,6 +49,7 @@ if ($resultado != false) {
             }
         }
     </script>
-    <h1> Você está logado! </h1>
+    <h1> Você está logado! Olá</h1>
 </body>
 </html>
+
