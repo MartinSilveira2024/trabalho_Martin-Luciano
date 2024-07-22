@@ -1,6 +1,6 @@
 <?php
 $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
-$sql = "SELECT * FROM usuario where id_usuario=1";
+$sql = "SELECT * FROM usuario";
 $resultado = mysqli_query($conexao, $sql);
 if ($resultado != false) {
     $user = mysqli_fetch_all($resultado, MYSQLI_BOTH);
@@ -31,9 +31,9 @@ if ($resultado != false) {
             <?php
                     foreach ($user as $users) {
                         $arq = $users['foto'];
+                        echo "<td><img src='../upload/uploads/$arq' width='100px' height='100px'></td>";
                         echo "<tr>"; //iniciar a linha
                         echo "<a href='../upload/index.php'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
-                        echo "<td><img src='./uploads/$arq' width='100px' height='100px'></td>"; // exibe imagem 
                         echo "<td>" . $user = $users['nome']; "</td>"; //1a coluna com o nome do arquivo
                         echo "<tr>";
                     }
