@@ -1,6 +1,6 @@
 <?php
 $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
-$sql = "SELECT * FROM usuario";
+$sql = "SELECT * FROM usuario where id_usuario=1";
 $resultado = mysqli_query($conexao, $sql);
 if ($resultado != false) {
     $user = mysqli_fetch_all($resultado, MYSQLI_BOTH);

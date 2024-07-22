@@ -1,7 +1,7 @@
 <?php
 
 $config = [
-    'host' => '',
+    'host' => 'localhost',
     'user' => 'root',
     'pass' => '',
     'db' => 'trab_martin_luciano',
