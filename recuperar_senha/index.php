@@ -39,8 +39,8 @@ if ($resultado != false) {
                     foreach ($arquivos as $arquivo) {
                         $arq = $arquivo['foto'];
                         echo "<tr>"; //iniciar a linha
-                        echo "<td><img src='uploads/$arq' width='100px' height='100px'></td>"; //
-                        echo "<td> <a href='uploads/$arq'>$arq </a></td>"; //1a coluna com o nome do arquivo
+                        echo "<td><img src='../upload/uploads/$arq' width='100px' height='100px'></td>"; //
+                        echo "<td> <a href='./upload/uploads/$arq'>$arq </a></td>"; //1a coluna com o nome do arquivo
                         echo "<td>"; //iniciar a 2a coluna
                         echo "<a "; //abriu a tag A ( o link)
                         echo "href='alterar.php?Nome_arquivo=$arq'>"; //inseriu o link do arquivo
