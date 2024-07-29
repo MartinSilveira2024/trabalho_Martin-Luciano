@@ -58,7 +58,7 @@ if ($fezupload == true) {
                 echo "Erro ao apagar o arquivo antigo.";
             }
         }
-        header("location:../recuperar_senha/index.php");
+        header("location:../index.php");
     } else {
         echo "erro ao mover arquivo";
     }
