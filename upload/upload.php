@@ -1,4 +1,5 @@
 <?php
+
 // definiu a pasta de destino
 $pastadestino = "/uploads/";
 //pegamos o nome do arquivo
@@ -42,6 +43,8 @@ if ($fezupload == true) {
     $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
     $sql = "INSERT INTO usuario (nome, email, senha, foto) VALUES ('$nome','$email','$senha', '$nomearq.$extensao')";
     $resultado = mysqli_query($conexao, $sql);
+    session_start();
+    $_SESSION['usuario'] = $nome;
     if ($resultado != false) {
         //se for uma alteração de arquivo
         if (isset($_POST['foto'])) {
@@ -58,7 +61,7 @@ if ($fezupload == true) {
                 echo "Erro ao apagar o arquivo antigo.";
             }
         }
-        header("location:../recuperar_senha/index.php");
+        header("location:../recuperar_senha/principal.php");
     } else {
         echo "erro ao mover arquivo";
     }

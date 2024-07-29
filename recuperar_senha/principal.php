@@ -1,6 +1,8 @@
 <?php
+session_start();
+$id_usuario = $_SESSION['usuario']['id_usuario'];
 $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
-$sql = "SELECT * FROM usuario";
+$sql = "SELECT * FROM usuario WHERE id_usuario = $id_usuario";
 $resultado = mysqli_query($conexao, $sql);
 if ($resultado != false) {
     $user = mysqli_fetch_all($resultado, MYSQLI_BOTH);
@@ -29,14 +31,14 @@ if ($resultado != false) {
         </thead>
         <tbody>
             <?php
-                    foreach ($user as $users) {
+                    foreach($user as $users) {
                         $arq = $users['foto'];
                         echo "<td><img src='../upload/uploads/$arq' width='100px' height='100px'></td>";
                         echo "<tr>"; //iniciar a linha
                         echo "<a href='../upload/index.php'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
                         echo "<td>" . $user = $users['nome']; "</td>"; //1a coluna com o nome do arquivo
                         echo "<tr>";
-                    }
+                     }
                     ?> </tbody>
     </table>
 
@@ -49,7 +51,7 @@ if ($resultado != false) {
             }
         }
     </script>
-    <h1> Você está logado! Olá</h1>
+    <h1> Você está logado! Olá <?php echo $_SESSION['usuario'] ?></h1>
 </body>
 </html>
 
