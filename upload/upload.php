@@ -44,7 +44,7 @@ if ($fezupload == true) {
     $sql = "INSERT INTO usuario (nome, email, senha, foto) VALUES ('$nome','$email','$senha', '$nomearq.$extensao')";
     $resultado = mysqli_query($conexao, $sql);
     session_start();
-    $_SESSION['usuario'] = $nome;
+    $_SESSION['usuario'] = $email;
     if ($resultado != false) {
         //se for uma alteração de arquivo
         if (isset($_POST['foto'])) {

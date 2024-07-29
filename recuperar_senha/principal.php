@@ -1,8 +1,8 @@
 <?php
 session_start();
-$id_usuario = $_SESSION['usuario']['id_usuario'];
+$email = $_SESSION['usuario'];
 $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
-$sql = "SELECT * FROM usuario WHERE id_usuario = $id_usuario";
+$sql = "SELECT * FROM usuario WHERE email = '$email'";
 $resultado = mysqli_query($conexao, $sql);
 if ($resultado != false) {
     $user = mysqli_fetch_all($resultado, MYSQLI_BOTH);
