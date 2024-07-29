@@ -15,14 +15,16 @@ if ($resultado != false) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina principal</title>
 </head>
+
 <body>
 
-<table>
+    <table>
         <thead>
             <tr>
                 <th colspan="2"> Nome</th>
@@ -31,15 +33,16 @@ if ($resultado != false) {
         </thead>
         <tbody>
             <?php
-                    foreach($user as $users) {
-                        $arq = $users['foto'];
-                        echo "<td><img src='../upload/uploads/$arq' width='100px' height='100px'></td>";
-                        echo "<tr>"; //iniciar a linha
-                        echo "<a href='../upload/index.php'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
-                        echo "<td>" . $user = $users['nome']; "</td>"; //1a coluna com o nome do arquivo
-                        echo "<tr>";
-                     }
-                    ?> </tbody>
+            foreach ($user as $users) {
+                $arq = $users['foto'];
+                echo "<td><img src='../upload/uploads/$arq' width='100px' height='100px'></td>";
+                echo "<tr>"; //iniciar a linha
+                echo "<a href='../upload/index.php'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
+                echo "<td>" . $user = $users['nome'];
+                "</td>"; //1a coluna com o nome do arquivo
+                echo "<tr>";
+            }
+            ?> </tbody>
     </table>
 
     <script>
@@ -53,5 +56,5 @@ if ($resultado != false) {
     </script>
     <h1> Você está logado! Olá <?php echo $_SESSION['usuario'] ?></h1>
 </body>
-</html>
 
+</html>
