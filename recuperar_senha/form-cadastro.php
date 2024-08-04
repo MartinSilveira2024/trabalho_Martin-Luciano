@@ -8,9 +8,8 @@
 </head>
 
 <body>
-    <form action="../upload/upload.php" method="post" enctype="multipart/form-data">
-        Selecione a imagem para foto de perfil: <br>
-        <input type="file" name="arquivo"> <br>
+    <form action="cadastro.php" method="POST" enctype="multipart/form-data">
+   
         <label> Nome: <input type="text" name="nome"> </label> <br>
         <label> Email: <input type="email" name="email"> </label> <br>
         <label> Senha: <input type="password" name="senha"> </label> <br>

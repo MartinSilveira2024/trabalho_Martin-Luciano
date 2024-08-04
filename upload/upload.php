@@ -1,70 +1,68 @@
 <?php
+session_start();
+$email = $_SESSION['usuario'];
 
-// definiu a pasta de destino
-$pastadestino = "/uploads/";
-//pegamos o nome do arquivo
+// Conectado ao banco
+$conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
+if (!$conexao) {
+    die("Falha na conexão: " . mysqli_connect_error());
+}
+
+// Definiçao da pasta de destino
+$pastadestino = "../upload/uploads/"; // 
+
+// pegamos o nome do arquivo
 $nomeArquivo = $_FILES['arquivo']['name'];
-$nome = $_POST['nome'];
-$email = $_POST['email'];
-$senha = $_POST['senha'];
-//verificar se o arquivo ja existe
-if (file_exists(__DIR__ . $pastadestino . $nomeArquivo)) {
-    echo "arquivo ja existe";
-    exit;
-}
-
-//verificar se o tamanho esperarado é maior que 10mb
-if ($_FILES['arquivo']['size'] > 10000000) { //10M
-    echo "arquivo muito grande";
-    exit;
-}
-//verificar se o arquivo é uma imagem
 $extensao = strtolower(pathinfo($nomeArquivo, PATHINFO_EXTENSION));
 
-if ($extensao != "jpg" && $extensao != "png" && $extensao != "gif" && $extensao != "jfif" && $extensao != "svg") {
-    echo "Isso nao é uma imagem";
+// Verificar se o arquivo já existe
+if (file_exists($pastadestino . $nomeArquivo)) {
+    echo "Arquivo já existe";
     exit;
 }
 
+// Verificar se o tamanho do arquivo é maior que 10MB
+if ($_FILES['arquivo']['size'] > 10000000) { // 10MB
+    echo "Arquivo muito grande";
+    exit;
+}
 
+// verificar se o arquivo é uma imagem
+$extensao = strtolower(pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION));
 
-// verificar se é uma imagem de fato
-if (getimagesize($_FILES['arquivo']['tmp_name']) === false) {
-    echo "Problemas ao enviar a imagem. Tente novamente.";
+if (
+    $extensao != "png" && $extensao != "jpg" &&
+    $extensao != "jpeg" && $extensao != "gif" &&
+    $extensao != "jfif" && $extensao != "svg"
+) { // condição de guarda 👮
+    echo "O arquivo não é uma imagem! Apenas selecione arquivos 
+    com extensão png, jpg, jpeg, gif, jfif ou svg.";
     die();
 }
 
-$nomearq = uniqid();
-//se deu certo até aqui
-$fezupload = move_uploaded_file($_FILES['arquivo']['tmp_name'], __DIR__ .  $pastadestino . $nomearq . "." . $extensao);
+$nomearq = uniqid(); // Gera um nome único para o arquivo
+$nomeArquivoFinal = $nomearq . "." . $extensao; // Nome final do arquivo
+$fezupload = move_uploaded_file($_FILES['arquivo']['tmp_name'], $pastadestino . $nomeArquivoFinal);
 
-
-if ($fezupload == true) {
-    $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
-    $sql = "INSERT INTO usuario (nome, email, senha, foto) VALUES ('$nome','$email','$senha', '$nomearq.$extensao')";
+if ($fezupload) {
+    $sql = "UPDATE usuario SET foto='$nomeArquivoFinal' WHERE email='$email'";
     $resultado = mysqli_query($conexao, $sql);
-    session_start();
-    $_SESSION['usuario'] = $email;
-    if ($resultado != false) {
-        //se for uma alteração de arquivo
-        if (isset($_POST['foto'])) {
-            $apagou = unlink(__DIR__ .  $pastadestino . $_POST['foto']);
-            if ($apagou == true) {
-                $sql = "DELETE FROM usuario WHERE foto='"
-                    . $_POST['foto'] . "'";
-                $resultado2 = mysqli_query($conexao, $sql);
-                if ($resultado2 == false) {
-                    echo "Erro ao apagar o arquivo do banco de dados.";
-                    die();
-                }
-            } else {
-                echo "Erro ao apagar o arquivo antigo.";
+
+    if ($resultado) {
+        // Se for uma alteração de foto, excluir a foto antiga
+        if (isset($_POST['foto']) && !empty($_POST['foto'])) {
+            $fotoAntiga = $_POST['foto'];
+            $caminhoFotoAntiga = $pastadestino . $fotoAntiga;
+            if (file_exists($caminhoFotoAntiga)) {
+                unlink($caminhoFotoAntiga);
             }
         }
-        header("location:../index.php");
+        header("Location: ../recuperar_senha/principal.php"); // Redireciona após o sucesso
     } else {
-        echo "erro ao mover arquivo";
+        echo "Erro ao atualizar o banco de dados: " . mysqli_error($conexao);
     }
 } else {
-    echo "Erro ao registrar o arquivo no banco de dados.";
+    echo "Erro ao mover o arquivo.";
 }
+
+mysqli_close($conexao);

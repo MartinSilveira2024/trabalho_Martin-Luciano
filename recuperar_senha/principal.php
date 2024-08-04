@@ -2,53 +2,59 @@
 session_start();
 $email = $_SESSION['usuario'];
 $conexao = mysqli_connect("localhost", "root", "", "trab_martin_luciano");
+
+if (!$conexao) {
+    die("Falha na conexão: " . mysqli_connect_error());
+}
+
 $sql = "SELECT * FROM usuario WHERE email = '$email'";
 $resultado = mysqli_query($conexao, $sql);
+
 if ($resultado != false) {
-    $user = mysqli_fetch_all($resultado, MYSQLI_BOTH);
+    $usuario = mysqli_fetch_assoc($resultado);
 } else {
     echo "Erro ao executar comando SQL.";
     die();
 }
+
+// Defino o caminho para a imagem padrão
+$imagemPadrao = '../upload/default.jpg';
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina principal</title>
+    <title>Página Principal</title>
 </head>
 
 <body>
-
     <table>
         <tbody>
             <?php
-            foreach ($user as $users) {
-                $arq = $users['foto'];
-                echo "<td><img src='../upload/uploads/$arq' width='100px' height='100px'></td>";
-                echo "<tr>"; //iniciar a linha
-                echo "<a href='../upload/alterar.php?Nome_arquivo=$arq'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
-                "</td>"; //1a coluna com o nome do arquivo
-                echo "<tr>";
-            }
-            ?> </tbody>
-    </table>
+            // Verifico se a foto do usuário está definida e se o arquivo existe
+            $arquivo = $usuario['foto'];
+            // Corrijo o caminho para o diretório de uploads
+            $caminhoUploads = '../upload/uploads/';
+            $caminhoArquivo = $caminhoUploads . $arquivo;
 
-    <script>
-        function excluir(Nome_arquivo) {
-            confirm("Você tem certeza que deseja excluir este arquivo " + Nome_arquivo + "?");
-            let deletar = confirm("Você tem certeza que deseja excluir?")
-            if (deletar == true) {
-                window.location.href = "deletar.php?Nome_arquivo=" + Nome_arquivo;
+            if (empty($arquivo) || !file_exists($caminhoArquivo)) {
+                $caminhoArquivo = $imagemPadrao; // Use a imagem padrão se não houver uma foto definida
+            } else {
+                $caminhoArquivo = $caminhoArquivo; // define a foto do usuario
             }
-        }
-    </script>
-    <p> Você está logado! <?php echo "<td>" . $user = $users['nome'];?> </p> 
-    <p> Seu email é: <?php echo $_SESSION['usuario'] ?> </p>
+
+            echo "<tr>"; // Iniciar a linha
+            echo "<td><img src='$caminhoArquivo' width='100px' height='100px'></td>"; 
+            echo "<td><a href='../upload/alterarfoto.php?Nome_arquivo={$usuario['foto']}'>Alterar foto de perfil</a></td>";
+            ?>
+        </tbody>
+    </table>
+    <p>Você está logado! <?php echo ($usuario['nome']); ?></p>
+    <p>Seu email é: <?php echo ($_SESSION['usuario']); ?></p>
+    <a href="deslogin.php"> Logout </a>
 </body>
 
 </html>
