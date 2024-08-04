@@ -25,12 +25,6 @@ if ($resultado != false) {
 <body>
 
     <table>
-        <thead>
-            <tr>
-                <th colspan="2"> Nome</th>
-                <th colspan="2"> Opções </th>
-            </tr>
-        </thead>
         <tbody>
             <?php
             foreach ($user as $users) {
@@ -38,7 +32,6 @@ if ($resultado != false) {
                 echo "<td><img src='../upload/uploads/$arq' width='100px' height='100px'></td>";
                 echo "<tr>"; //iniciar a linha
                 echo "<a href='../upload/alterar.php?Nome_arquivo=$arq'> Alterar foto de perfil</a>"; //inseriu o link do arquivo
-                echo "<td>" . $user = $users['nome'];
                 "</td>"; //1a coluna com o nome do arquivo
                 echo "<tr>";
             }
@@ -54,7 +47,8 @@ if ($resultado != false) {
             }
         }
     </script>
-    <h1> Você está logado! Olá <?php echo $_SESSION['usuario'] ?></h1>
+    <p> Você está logado! <?php echo "<td>" . $user = $users['nome'];?> </p> 
+    <p> Seu email é: <?php echo $_SESSION['usuario'] ?> </p>
 </body>
 
 </html>
