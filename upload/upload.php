@@ -41,7 +41,7 @@ if (
 }
 
 $nomearq = uniqid(); // Gera um nome único para o arquivo
-$nomeArquivoFinal = $nomearq . "." . $extensao; // Nome final do arquivo
+$nomeArquivoFinal = $nomearq . "." . $extensao; // Nome do arquivo + extensão
 $fezupload = move_uploaded_file($_FILES['arquivo']['tmp_name'], $pastadestino . $nomeArquivoFinal);
 
 if ($fezupload) {
@@ -49,7 +49,7 @@ if ($fezupload) {
     $resultado = mysqli_query($conexao, $sql);
 
     if ($resultado) {
-        // Se for uma alteração de foto, excluir a foto antiga
+        // excluir a foto antiga pra alterar 100% certo
         if (isset($_POST['foto']) && !empty($_POST['foto'])) {
             $fotoAntiga = $_POST['foto'];
             $caminhoFotoAntiga = $pastadestino . $fotoAntiga;
