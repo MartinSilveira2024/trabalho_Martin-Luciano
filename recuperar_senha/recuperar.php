@@ -20,10 +20,10 @@ if ($usuario == null) {
 //gerar um token unico
 $token = bin2hex(random_bytes(50));
 
-require_once 'PHPMailer/src/PHPMailer.php';
-require_once 'PHPMailer/src/SMTP.php';
-require_once 'PHPMailer/src/Exception.php';
-include 'config.php';
+require_once '../PHPMailer/src/PHPMailer.php';
+require_once '../PHPMailer/src/SMTP.php';
+require_once '../PHPMailer/src/Exception.php';
+include 'config_php.php';
 
 $mail = new PHPMailer(true);
 try {
