@@ -49,5 +49,5 @@ $sql3 = "UPDATE  `recuperar_senha` SET usado=1 WHERE email='$email' AND token='$
 executarSQL($conexao, $sql3);
 
 echo "Nova senha alterada com sucesso! faça o login para acessar o sistema.";
-echo "<a href='index.php'> Acessar sistema </a>";
+echo "<a href='../index.php'> Acessar sistema </a>";
 }

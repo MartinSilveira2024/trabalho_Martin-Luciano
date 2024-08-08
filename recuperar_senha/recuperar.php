@@ -59,7 +59,7 @@ try {
     $mail->Body = 'Olá <br>
     Você solicitou a recuperação da sua conta no nosso sistema.
         Para isso, clique no link abaixo para realizar a troca de senha: <br>
-        <a href="' . $_SERVER['SERVER_NAME'] . '..//recuperar_senha/nova_senha.php?email=' . $usuario['email'] . '&token=' . $token . '">Recuperar Senha</a>
+        <a href="' . $_SERVER['SERVER_NAME'] . '/trabalho_martin-luciano/recuperar_senha/nova_senha.php?email=' . $usuario['email'] . '&token=' . $token . '">Recuperar Senha</a>
         <br>
         Atenciosamente<br>
             Equipe do sistema...';
