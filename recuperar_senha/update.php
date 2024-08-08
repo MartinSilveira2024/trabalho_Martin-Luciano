@@ -9,7 +9,7 @@ $senha = $_POST['senha'];
 $sql = "UPDATE usuario SET email='$email', senha='$senha' WHERE id_usuario=$id_usuario";
 $result = mysqli_query($conexao, $sql);
 if ($result) {
-    header("Location: index.php");
+    header("Location: principal.php");
 } else {
     echo mysqli_errno($conexao) . ": " . mysqli_error($conexao);
 }
