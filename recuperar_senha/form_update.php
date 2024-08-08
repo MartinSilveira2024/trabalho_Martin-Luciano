@@ -23,7 +23,7 @@ if ($result) {
 </head>
 
 <body>
-    <form action="alterar.php" method="post">
+    <form action="update.php" method="post">
         ID: <input type="number" name="id_usuario" value="<?= $usuario['id_usuario'] ?>"><br>
         Email: <input type="email" name="email" value="<?= $usuario['email'] ?>"><br>
         Senha: <input type="password" name="senha" value="<?= $usuario['senha'] ?>"><br>

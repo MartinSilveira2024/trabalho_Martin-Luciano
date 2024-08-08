@@ -54,8 +54,8 @@ $imagemPadrao = '../upload/default.jpg';
     </table>
     <p>Você está logado! <?php echo ($usuario['nome']); ?></p>
     <p>Seu email é: <?php echo ($_SESSION['usuario']); ?></p>
-    <a href="form_update.php?id_usuario=' .$usuario['id_usuario'] . '"> Alterar perfil </a> <br> <br>
-    <a href="form_update.php?id_usuario=' .$usuario['id_usuario'] . '"> Excluir perfil </a> <br> <br>
+    <a href="form_update.php?id_usuario='<?php echo $usuario['id_usuario']; ?>'"> Alterar perfil </a> <br> <br>
+    <a href="delete.php?id_usuario='<?php echo $usuario['id_usuario']; ?>'"> Excluir perfil </a> <br> <br>
     <a href="deslogin.php"> Logout </a> 
 </body>
 
