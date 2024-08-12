@@ -24,9 +24,10 @@ if ($result) {
 
 <body>
     <form action="update.php" method="post">
-        ID: <input type="number" name="id_usuario" value="<?= $usuario['id_usuario'] ?>"><br>
+        Nome: <input type="text" name="nome" value="<?= $usuario['nome'] ?>"><br>
         Email: <input type="email" name="email" value="<?= $usuario['email'] ?>"><br>
         Senha: <input type="password" name="senha" value="<?= $usuario['senha'] ?>"><br>
+        <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>"><br>
         <input type="submit" value="Salvar"><br>
     </form>
 </body>
